@@ -8,7 +8,7 @@ before_script:
   - sudo pip3 install Cython==0.29 > cython.log 2>&1
 
 script:
-  - travis_wait 30 sudo pip3 install -e . > pip_install.log 2>&1
+  - sudo pip3 install -e .
   - chimaera -h
   - chimaera data/exome_sample_data.txt
   # TODO actual tests
