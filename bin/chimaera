@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+import argparse
+import traceback
+import os
+import logging
+import sys
+from chimaera.pipelines import chimaera_hdbscan
+
+
+parser = argparse.ArgumentParser(
+    description='Run chimaera to estimate clonal ' +
+    'composition of a tumor using multiple biosies ' +
+    'from a single patient.'
+)
+parser.add_argument(
+    'input_file', action='store',
+    help='File containing mutations data in tabular format. ' +
+    'It needs an header including VAF and CN fields' +
+    '(case-insensitive) together with a sample-id, e.g.: ' +
+    'id1-VAF id1-CN ... idn-VAF idn-CN. ' +
+    'An index containing the mutations id is also required.'
+)
+parser.add_argument(
+    '--output-path',  action='store', dest='output_path',
+    help='Path to directory where chimaera results should ' +
+    'be saved. If not passed it will print the output ' +
+    'to stdout (it can be used for piping commands).'
+)
+parser.add_argument(
+    '--min-clone-size', action='store',
+    dest='min_clone_size', type=int, default=5,
+    help='Minimum number of mutations needed to consider a clone. ' +
+    'Default to 5.'
+)
+parser.add_argument(
+    '--clone-analyzer', action='store',
+    dest='clone_analyzer', default='random',
+    help='Clone analyzer used for optimizing clone frequencies. ' +
+    'Default to random. If robust is used it gives stable estimates ' +
+    'accross multiple run. Method random does not underestimate frequencies ' +
+    'but results are less repeatable (~0.05-0.1 variability accross ' +
+    'runs in frequency estimates).'
+)
+parser.add_argument(
+    '--input-sep', action='store',
+    dest='sep', default='\t',
+    help='Field separator for input_file. Default to tab.'
+)
+parser.add_argument(
+    '--allele-cn-lb', action='store',
+    dest='delta_lb', type=float, default=0.0,
+    help='Allele copy number lower bound. Default to 0.0.'
+)
+parser.add_argument(
+    '--allele-cn-ub', action='store',
+    dest='delta_ub', type=float, default=4.0,
+    help='Allele copy number upper bound. Default to 4.0.'
+)
+parser.add_argument(
+    '--log-file', action='store',
+    dest='log_file', default=None,
+    help='File for logging chimaera output. ' +
+    'Unless specified no logging of chimaera execution is produced.'
+)
+parser.add_argument(
+    '--version', '-v', action='version', version='%(prog)s version=0.2',
+    help='chimaera version'
+)
+try:
+    parsed_args = parser.parse_args()
+except Exception as exc:
+    traceback.print_exc()
+    Exception('Error parsing command-line arguments.')
+
+if __name__ == '__main__':
+    # setting up logging
+    prefix, ext = os.path.splitext(os.path.basename(parsed_args.input_file))
+    output_file = None
+    clones_estimator = 'hdbscan'
+    if parsed_args.output_path is not None:
+        output_file = os.path.join(
+            parsed_args.output_path,
+            '{}_{}_{}{}'.format(
+                prefix, clones_estimator,
+                parsed_args.clone_analyzer, ext
+            )
+        )
+    logging_format = '[%(asctime)s] [%(levelname)s] ' +\
+                     '[%(module)s] [%(name)s]: %(message)s'
+    if parsed_args.log_file is not None:
+        logging.basicConfig(
+            stream=open(parsed_args.log_file, 'w'), level=logging.INFO,
+            format=logging_format
+        )
+    logger = logging.getLogger('chimaera')
+    logger.info('Running chimaera pipeline.')
+    results = chimaera_hdbscan(
+        parsed_args.input_file, parsed_args.sep,
+        parsed_args.min_clone_size, parsed_args.clone_analyzer,
+        parsed_args.delta_lb, parsed_args.delta_ub
+    )
+    if results['cancer_df'] is not None:
+        if output_file is not None:
+            logger.info(
+                'Exporting chimaera results to {}.'.format(output_file)
+            )
+            results['cancer_df'].to_csv(output_file, sep=parsed_args.sep)
+        else:
+            results['cancer_df'].to_csv(sys.stdout, sep=parsed_args.sep)
+    else:
+        print('Chimaera failed in estimating cellularities.')
+        print('Try reducing --min-clone-size.')
