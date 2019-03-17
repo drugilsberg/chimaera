@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/drugilsberg/chimaera.svg?branch=master)](https://travis-ci.org/drugilsberg/chimaera)
 # chimaera
 
 Python implementation of Chimaera algorithm based on [Inferring clonal composition from multiple tumor biopsies](https://arxiv.org/ftp/arxiv/papers/1701/1701.07940.pdf).
