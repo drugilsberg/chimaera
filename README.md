@@ -42,7 +42,7 @@ chimaera /path/to/data.txt
 
 It accepts different arguments, read the help for a full description:
 
-```
+```console
 usage: chimaera [-h] [--output-path OUTPUT_PATH]
                 [--min-clone-size MIN_CLONE_SIZE]
                 [--clone-analyzer CLONE_ANALYZER] [--input-sep SEP]
