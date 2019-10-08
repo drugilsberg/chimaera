@@ -7,7 +7,7 @@ Chimaera is also available on [IBM Cloud](https://ibm.biz/chimaera-aas).
 
 ## Requirements
 
-- Python >=3.4
+- Python >=3.5
 - Cython needs to be installed to compile hdbscan
 
 ## Installation
