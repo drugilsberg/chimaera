@@ -18,9 +18,6 @@ setup(
     author='Matteo Manica',
     author_email='tte@zurich.ibm.com',
     packages=find_packages('.'),
-    setup_requires=[
-        'Cython'
-    ],
     install_requires=[
         'joblib',
         'numpy',

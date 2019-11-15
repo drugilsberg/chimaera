@@ -12,7 +12,7 @@ Chimaera is also available as an open access web service on [IBM Cloud](https://
 ## Requirements
 
 - Python >=3.5
-- Cython needs to be installed to compile hdbscan
+- pip >= 10.0
 
 ## Installation
 
