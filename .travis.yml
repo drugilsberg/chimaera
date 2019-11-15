@@ -1,11 +1,10 @@
 dist: xenial
 
-python:
-  - 3.6
+sudo: required
 
 before_script:
   - sudo apt-get update
-  - sudo apt-get -H install --allow-unauthenticated gfortran libblas-dev liblapack-dev
+  - sudo apt-get install -H --allow-unauthenticated python3-pip python3-dev gfortran libblas-dev liblapack-dev
 
 script:
   - sudo pip3 install -e .
