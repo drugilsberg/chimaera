@@ -3,6 +3,8 @@
 
 # chimaera
 
+![Chimaera](docs/chimaera.png)
+
 ## References
 
 Python implementation of Chimaera algorithm based on [Inferring clonal composition from multiple tumor biopsies](https://arxiv.org/ftp/arxiv/papers/1701/1701.07940.pdf).
@@ -19,7 +21,6 @@ Chimaera is also available as an open access web service on [IBM Cloud](https://
 In case `pip` is installed just type:
 
 ```sh
-pip install Cython==0.29
 pip install .
 ```
 
