@@ -6,7 +6,7 @@ from setuptools import find_packages
 LONG_DESCRIPTION = ''
 if os.path.exists('README.md'):
     with open('README.md') as fp:
-        LONG_DESCRIPTION = fp.read()xe
+        LONG_DESCRIPTION = fp.read()
 
 scripts = ['bin/chimaera']
 
