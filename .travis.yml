@@ -4,7 +4,7 @@ python:
   - 3.6
 
 before_script:
-  - sudo apt-get -H update
+  - sudo apt-get update
   - sudo apt-get -H install --allow-unauthenticated gfortran libblas-dev liblapack-dev
 
 script:
