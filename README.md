@@ -1,9 +1,13 @@
 [![Build Status](https://travis-ci.org/drugilsberg/chimaera.svg?branch=master)](https://travis-ci.org/drugilsberg/chimaera)
 [![DOI](https://zenodo.org/badge/176124980.svg)](https://zenodo.org/badge/latestdoi/176124980)
+
 # chimaera
 
+## References
+
 Python implementation of Chimaera algorithm based on [Inferring clonal composition from multiple tumor biopsies](https://arxiv.org/ftp/arxiv/papers/1701/1701.07940.pdf).
-Chimaera is also available on [IBM Cloud](https://ibm.biz/chimaera-aas).
+The supplementary tables for the publication can be found [here](https://bcm.box.com/v/chimaera-supplementary).
+Chimaera is also available as an open access web service on [IBM Cloud](https://ibm.biz/chimaera-aas).
 
 ## Requirements
 
