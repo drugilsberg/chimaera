@@ -6,15 +6,7 @@ from setuptools import find_packages
 LONG_DESCRIPTION = ''
 if os.path.exists('README.md'):
     with open('README.md') as fp:
-        LONG_DESCRIPTION = fp.read()
-
-REQUIREMENTS = []
-if os.path.exists('requirements.txt'):
-    with open('requirements.txt') as fp:
-        REQUIREMENTS = [
-            line.strip()
-            for line in fp
-        ]
+        LONG_DESCRIPTION = fp.read()xe
 
 scripts = ['bin/chimaera']
 
@@ -30,12 +22,12 @@ setup(
         'Cython'
     ],
     install_requires=[
-        'joblib'
-        'numpy'
-        'scipy'
-        'scikit-learn'
-        'hdbscan'
-        'pandas'
+        'joblib',
+        'numpy',
+        'scipy',
+        'scikit-learn',
+        'hdbscan',
+        'pandas',
         'xlrd'
     ],
     zip_safe=False,
