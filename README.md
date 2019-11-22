@@ -7,7 +7,7 @@
 
 ## References
 
-Python implementation of Chimaera algorithm based on [Inferring clonal composition from multiple tumor biopsies](https://arxiv.org/ftp/arxiv/papers/1701/1701.07940.pdf).
+Python implementation of Chimaera algorithm based on [Inferring clonal composition from multiple tumor biopsies](https://arxiv.org/abs/1701.07940).
 
 The supplementary tables for the publication can be found [here](https://bcm.box.com/v/chimaera-supplementary).
 
