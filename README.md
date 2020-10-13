@@ -18,6 +18,8 @@ Chimaera is also available as an open access web service on [IBM Cloud](https://
 - Python >=3.5
 - pip >= 10.0
 
+**NOTE:** For Python >=3.7 make sure `Cython` is installed before the installation of `chimaera`: `pip install Cython`.
+
 ## Installation
 
 In case `pip` is installed just type:
