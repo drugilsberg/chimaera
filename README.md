@@ -11,8 +11,6 @@ Python implementation of Chimaera algorithm based on [Inferring clonal compositi
 
 The supplementary tables for the publication can be found [here](https://bcm.box.com/v/chimaera-supplementary).
 
-Chimaera is also available as an open access web service on [IBM Cloud](https://ibm.biz/chimaera-aas).
-
 If you use Chimaera please cite it using the following:
 
 ```bibtex
@@ -118,3 +116,8 @@ Run the example:
 ```sh
 chimaera data/exome_sample_data.txt
 ```
+
+## web service deprecation
+
+The Chimaera web-service has been deprecated in favour of the python package hosted in this repository.
+Please check the examples to use Chimaera in your research.
