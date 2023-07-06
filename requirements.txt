@@ -1,7 +1,7 @@
 Cython==0.29
 joblib==0.13.2
 numpy==1.16.1
-scipy==1.1.0
+scipy==1.10.0
 scikit-learn==0.20.3
 hdbscan==0.8.18
 pandas==0.23.4
